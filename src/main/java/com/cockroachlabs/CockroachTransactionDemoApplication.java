@@ -11,8 +11,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class CockroachTransactionDemoApplication {
 
-    public static void main(String[] args) {
-        SpringApplication.run(CockroachTransactionDemoApplication.class, args);
-    }
-
+	public static void main(String[] args) {
+		SpringApplication.run(CockroachTransactionDemoApplication.class, args);
+	}
 }

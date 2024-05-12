@@ -3,7 +3,6 @@ package com.cockroachlabs;
 import java.util.List;
 import java.util.UUID;
 
-import org.springframework.web.ErrorResponse;
 import org.springframework.web.bind.annotation.*;
 
 /**
