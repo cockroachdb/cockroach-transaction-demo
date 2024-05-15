@@ -14,8 +14,8 @@
     <artifactId>cockroach-transaction-demo</artifactId>
     <version>0.0.1-SNAPSHOT</version>
 
-    <name>cockroach-transaction-demo</name>
-    <description>cockroach-transaction-demo</description>
+    <name>CockroachDB Transaction Best Practices Demo</name>
+    <description>Demonstrate best practices in using transactions in a Spring Boot application</description>
 
     <contributors>
         <contributor>

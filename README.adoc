@@ -1,0 +1,27 @@
+== CockroachDB Transaction Best Practices
+
+This repository contains a sample application that illustrates some best practices regarding transaction handling with CockroachDB.
+
+The project included uses Spring Boot + Spring Data JPA.
+
+=== Database Schema + Sample Data
+
+[source,sql]
+----
+include::src/main/resources/schema.sql[]
+----
+
+=== Read Committed Transaction
+
+The following diagram illustrates a simple scenario that involves *read committed* transactions, and what can happen when you have competing transactions.
+
+image::01-read-committed-competing-transaction.png[Read Committed Flow]
+
+
+=== Serializable Transaction
+
+The following diagram illustrates a simple scenario that involves *serializable* transactions, and how competing transactions can translate into an exception, which can be handled.
+
+image::02-serializable-competing-transaction.png[Serializable Flow]
+
+
