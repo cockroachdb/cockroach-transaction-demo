@@ -8,8 +8,46 @@ The project included uses Spring Boot + Spring Data JPA.
 
 [source,sql]
 ----
-include::src/main/resources/schema.sql[]
+-- drop tables
+DROP TABLE IF EXISTS items;
+
+-- re-create tables
+CREATE TABLE items (item_id UUID PRIMARY KEY DEFAULT gen_random_uuid (),
+                    name STRING,
+                    description STRING,
+                    price DECIMAL NOT NULL,
+                    quantity INT DEFAULT 0);
+
+INSERT INTO items (name, description, quantity, price) VALUES ('foo', 'fang', 200, 0.0);
 ----
+
+=== JPA Structure
+
+The following Java class shows the JPA structure used in the app:
+
+[source,java]
+----
+@Entity
+@Table(name = "items")
+class Item {
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.UUID) //
+	private UUID itemId;
+
+	private String name;
+
+	private String description;
+
+	private int quantity;
+
+	private double price;
+
+    ...
+}
+----
+
+To see the rest of the project, feel free to clone this repository and open it up inside your favorite IDE.
 
 === Read Committed Transaction
 
