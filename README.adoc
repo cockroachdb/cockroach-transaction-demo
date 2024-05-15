@@ -63,3 +63,16 @@ The following diagram illustrates a simple scenario that involves *serializable*
 image::02-serializable-competing-transaction.png[Serializable Flow]
 
 
+=== To run this application
+
+For this app to work, you must:
+
+. Type `cockroach start-single-node --insecure` to launch CockroachDB.
+. In another shell, type `cockroach sql --insecure` to creation a SQL session.
+. Type `drop database if exists kwikshoppr cascade; create database kwikshoppr;` to create the database for this app.
+. In the SQL session, type `create database kwikshoppr;` to create the database for this app.
+. In the SQL session, type `SET CLUSTER SETTING sql.txn.read_committed_isolation.enabled = 'true';` to enable READ_COMMITTED transactions.
+
+If you need to restart, type `drop database if exists kwikshoppr cascade;` in the SQL session and then create the database again.
+
+You can NOT run the application without the database existing, because the name of the database (`kwikshoppr`) is embedded inside `application.properties` as part of the JDBC connection string.
