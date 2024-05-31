@@ -47,4 +47,9 @@ class ApiController {
 	void reduceQuantitySerializable(@RequestBody ReduceByDTO reduceBy) {
 		service.updateItemInventoryWithSerializableTransaction(reduceBy.name(), reduceBy.reduceBy());
 	}
+
+	@PostMapping("/api/reduceQuantity/selectForUpdate")
+	void reduceQuantitySelectForUpdate(@RequestBody ReduceByDTO reduceBy) {
+		service.updateItemInventoryWithSelectForUpdate(reduceBy.name(), reduceBy.reduceBy());
+	}
 }
