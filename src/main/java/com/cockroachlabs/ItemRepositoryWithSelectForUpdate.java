@@ -12,6 +12,13 @@ import org.springframework.transaction.annotation.Transactional;
 
 interface ItemRepositoryWithSelectForUpdate extends JpaRepository<Item, UUID> {
 
+	/**
+	 * {@literal @}{@link Lock} with {@link LockModeType#PESSIMISTIC_WRITE} is the setting to for the JPA provider to
+	 * induce a {@code SELECT FOR UPDATE} call.<br/>
+	 * <br/>
+	 * NOTE: {@link LockModeType#PESSIMISTIC_FORCE_INCREMENT} requires that your entity type have a {@code Version}
+	 * attribute.
+	 */
 	@Lock(LockModeType.PESSIMISTIC_WRITE)
 	Item findByName(String name);
 
