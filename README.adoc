@@ -55,6 +55,7 @@ The following diagram illustrates a simple scenario that involves *read committe
 
 image::01-read-committed-competing-transaction.png[Read Committed Flow]
 
+See link:READ_COMMITTED.md[]
 
 === Serializable Transaction
 
@@ -62,6 +63,15 @@ The following diagram illustrates a simple scenario that involves *serializable*
 
 image::02-serializable-competing-transaction.png[Serializable Flow]
 
+See link:SERIALIZABLE.md[]
+
+=== SELECT FOR UPDATE scenario
+
+`SELECT FOR UPDATE` provides the means to reduce retry errors from occurring.
+
+image::04-sql-for-update.png[SELECT FOR UPDATE scenario]
+
+See link:SELECT_FOR_UPDATE.adoc[]
 
 === To run this application
 
