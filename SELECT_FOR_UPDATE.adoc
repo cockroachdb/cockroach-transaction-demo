@@ -1,0 +1,80 @@
+== SELECT FOR UPDATE
+
+=== Setup
+
+Assuming you've already loaded the `kwikshoppr` database, make sure the balance is properly reset.
+
+. `cockroach sql --insecure`
+. `set database = kwikshoppr;`
+. `update items set quantity = 200 where name = 'foo';`
+. At this point, use this SQL shell for *Alice*.
+. Launch another shell in another terminal window using `cockroach sql --insecure`. Use this shell for *Bob*.
+
+=== Scenario
+
+. *Alice* starts a transaction.
++
+.Alice's shell
+[source,sql]
+----
+BEGIN TRANSACTION;
+----
++
+. Next, she checks the balance, locking the row at hand.
++
+.Alice's shell
+[source,sql]
+----
+SELECT quantity FROM items WHERE name = 'foo' FOR UPDATE;
+----
++
+. Bob starts his own transaction.
++
+.Bob's shell
+[source,sql]
+----
+BEGIN TRANSACTION;
+----
++
+. Bob checks the balance.
++
+.Bob's shell
+[source,sql]
+----
+SELECT quantity FROM items WHERE name = 'foo' FOR UPDATE;
+----
++
+Notice how this transaction simply waits?
+That's because *Alice* has this row locked.
++
+. Back in *Alice's* shell, update the balance, deducting `190` from `quantity`.
++
+.Alice's shell
+[source,sql]
+----
+UPDATE items
+SET quantity = quantity - 190
+WHERE name = 'foo';
+----
++
+. Commit *Alice's* transaction.
++
+.Alice's shell
+[source,sql]
+----
+COMMIT;
+----
++
+. Back in *Bob's* shell, what is the status of things?
+HINT: That `SELECT` statement should have completed, showing the updated `quantity` of `10`.
++
+. Since *Bob* wants `20`, his operation should fail with an `InsufficientQuantity` exception. We can emulate this with a `ROLLBACK`.
++
+.Bob's shell
+[source,sql]
+----
+ROLLBACK;
+----
+
+
+
