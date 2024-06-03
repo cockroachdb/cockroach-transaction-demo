@@ -53,7 +53,7 @@ That's because *Alice* has this row locked.
 [source,sql]
 ----
 UPDATE items
-SET quantity = quantity - 190
+SET quantity = quantity - 20
 WHERE name = 'foo';
 ----
 +
@@ -66,9 +66,9 @@ COMMIT;
 ----
 +
 . Back in *Bob's* shell, what is the status of things?
-HINT: That `SELECT` statement should have completed, showing the updated `quantity` of `10`.
+HINT: That `SELECT` statement should have completed, showing the updated `quantity` of `180`.
 +
-. Since *Bob* wants `20`, his operation should fail with an `InsufficientQuantity` exception. We can emulate this with a `ROLLBACK`.
+. Since *Bob* wants `190`, his operation should fail with an `InsufficientQuantity` exception. We can emulate this with a `ROLLBACK`.
 +
 .Bob's shell
 [source,sql]
