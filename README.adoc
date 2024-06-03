@@ -4,6 +4,8 @@ This repository contains a sample application that illustrates some best practic
 
 The project included uses Spring Boot + Spring Data JPA.
 
+BTW, if you're new to CockroachDB and how it works, be sure to check out https://thesecretlivesofdata.com/raft/[The Raft protocol], the mechanism Cockroach uses to seamlessly replicated and manage your data in a truly distributed fashion.
+
 === Database Schema + Sample Data
 
 [source,sql]
